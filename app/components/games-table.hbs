@@ -1,0 +1,29 @@
+<div>
+  <h2 class="text-lg font-bold mb-4">All Games</h2>
+  <table>
+    <thead>
+    <tr>
+      <th class="border px-3 py-2"></th>
+      <th class="border px-3 py-2">Player 1</th>
+      <th class="border px-3 py-2">Player 2</th>
+      <th class="border px-3 py-2">Winner</th>
+    </tr>
+    </thead>
+    <tbody>
+    {{#each @games as |game|}}
+      <tr>
+        <td class="border px-3 py-2"><a href="/games/{{game.id}}" class="underline">Game {{game.id}}</a></td>
+        <td class="border px-3 py-2 text-center"><PlayerSymbol @game={{game}} @playerId={{1}} /></td>
+        <td class="border px-3 py-2 text-center"><PlayerSymbol @game={{game}} @playerId={{2}} /></td>
+        <td class="border px-3 py-2 text-center">
+          {{#if game.winner_id}}
+            <PlayerSymbol @game={{game}} @playerId={{game.winner_id}} />
+          {{else}}
+            In progress
+          {{/if}}
+        </td>
+      </tr>
+    {{/each}}
+    </tbody>
+  </table>
+</div>
